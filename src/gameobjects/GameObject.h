@@ -15,12 +15,12 @@ class GameObject {
         SDL_FRect transform{};
         SDL_Texture* texture = nullptr;
 
-        GameObject(int x, int y, int w, int h);
+        GameObject(float x, float y, float w, float h);
 
         virtual void update(float deltaTime) = 0;
         virtual void render(SDL_Renderer* renderer) = 0;
 
-        virtual ~GameObject();
+        virtual ~GameObject() = default;
 
 };
 

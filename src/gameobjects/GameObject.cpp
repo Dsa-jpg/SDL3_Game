@@ -4,7 +4,7 @@
 
 #include "GameObject.h"
 
-GameObject::GameObject(int x, int y, int w, int h) {
+GameObject::GameObject(const float x, const float y, const float w, const float h) {
     transform.x = x;
     transform.y = y;
     transform.w = w;
