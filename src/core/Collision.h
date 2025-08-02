@@ -7,8 +7,9 @@
 #include "SDL3/SDL_rect.h"
 
 
-bool checkCollision(const SDL_FRect& a,const SDL_FRect& b);
+bool checkSquareCollision(const SDL_FRect &a, const SDL_FRect &b);
 
+bool checkCircleCollision(const SDL_FRect &a, const SDL_FRect &b);
 
 
 #endif //COLISSION_H

@@ -4,11 +4,19 @@
 
 #include "Floor.h"
 
-Floor::Floor(float x, float y, float w, float h) : GameObject(x, y, w, h) {}
+Floor::Floor(float x, float y, float w, float h) : GameObject(x, y, w, h) {
+    shape = ShapeType::POLYGON;
+}
 
 void Floor::render(SDL_Renderer *renderer) {
     SDL_SetRenderDrawColor(renderer, 5, 10, 120, 255);
-    SDL_RenderFillRect(renderer, &transform);
+    const SDL_FRect rect{
+        transform.position.x,
+        transform.position.y,
+        transform.scale.x,
+        transform.scale.y
+    };
+    SDL_RenderFillRect(renderer, &rect);
 }
 
 

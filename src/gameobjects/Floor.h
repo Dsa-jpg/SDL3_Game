@@ -4,7 +4,7 @@
 
 #ifndef FLOOR_H
 #define FLOOR_H
-#include "GameObject.h"
+#include "../core/GameObject.h"
 
 
 class Floor: public GameObject {

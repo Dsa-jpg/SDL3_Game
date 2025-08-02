@@ -1,21 +1,23 @@
 //
-// Created by Filip on 30.07.2025.
+// Created by Filip on 02.08.2025.
 //
 
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef CIRCLE_H
+#define CIRCLE_H
 #pragma once
 #include "Floor.h"
 #include "../core/GameObject.h"
 #include "../core/PhysicsBody.h"
 
 
-class Square : public GameObject {
+class Circle : public GameObject {
+public:
+    float radius;
+    int numSegments;
     PhysicsBody body;
     Floor *floor = nullptr;
 
-public:
-    Square(float x, float y, float w, float h, Floor *floor);
+    Circle(float x, float y, float radius, int numSegments, Floor *floor);
 
     void update(float deltaTime) override;
 
@@ -23,4 +25,4 @@ public:
 };
 
 
-#endif //SQUARE_H
+#endif //CIRCLE_H

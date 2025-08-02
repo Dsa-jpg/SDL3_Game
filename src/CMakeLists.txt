@@ -1,14 +1,19 @@
 add_executable(${PROJECT_NAME}
-        gameobjects/GameObject.cpp
-        gameobjects/GameObject.h
-        gameobjects/PhysicsBody.cpp
-        gameobjects/PhysicsBody.h
-        gameobjects/Collision.cpp
-        gameobjects/Collision.h
+        core/GameObject.cpp
+        core/GameObject.h
+        core/PhysicsBody.cpp
+        core/PhysicsBody.h
+        core/Collision.cpp
+        core/Collision.h
         gameobjects/Square.cpp
         gameobjects/Square.h
         gameobjects/Floor.cpp
         gameobjects/Floor.h
+        core/Vec2.h
+        core/Transform.h
+        gameobjects/Circle.cpp
+        gameobjects/Circle.h
+        core/Common.h
 )
 target_sources(${PROJECT_NAME} PRIVATE main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE vendor)
