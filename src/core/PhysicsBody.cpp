@@ -5,6 +5,7 @@
 #include "PhysicsBody.h"
 
 #include <iostream>
+#include <cmath>
 
 #include "Collision.h"
 
@@ -20,6 +21,7 @@ void PhysicsBody::update(GameObject *obj, const float deltaTime, const GameObjec
         if (checkCircleCollision(getBoundingBox(obj), getBoundingBox(floor))) {
             obj->transform.position.y = floor->transform.position.y - obj->transform.scale.y;
             velocity.y *= -0.5f;
+            acceleration.x = 10.0f;
         }
     }
 }
@@ -44,6 +46,13 @@ void PhysicsBody::accelerate(GameObject *obj, float deltaTime) {
 
     obj->transform.position.x += velocity.x * deltaTime;
     obj->transform.position.y += velocity.y * deltaTime;
+
+    if (obj->shape == ShapeType::CIRCLE) {
+        float radius = obj->transform.scale.x / 2.0f;
+        momentOfInertia = 0.5f * mass * radius * radius;
+        angularVelocity = velocity.x / radius;
+        rotation += angularVelocity * deltaTime;
+    }
 }
 
 

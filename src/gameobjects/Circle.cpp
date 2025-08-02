@@ -33,4 +33,11 @@ void Circle::render(SDL_Renderer *renderer) {
 
         SDL_RenderLine(renderer, x1, y1, x2, y2);
     }
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+
+    float angle = body.rotation;
+    float endX = centerX + radius * cosf(angle);
+    float endY = centerY + radius * sinf(angle);
+
+    SDL_RenderLine(renderer, centerX, centerY, endX, endY);
 }

@@ -17,6 +17,11 @@ public:
     // acceleration
     Vec2 acceleration{};
 
+    float angularVelocity = 0.0f;
+    float torque = 0.0f;
+    float rotation = 0.0f;
+    float momentOfInertia = 1.0f;
+
     float mass = 1.0f;
 
     bool affectedByGravity = true;
