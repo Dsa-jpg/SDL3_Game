@@ -5,19 +5,18 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 #pragma once
-#include "Floor.h"
 #include "../core/GameObject.h"
 #include "../core/PhysicsBody.h"
 
 
 class Square : public GameObject {
-    PhysicsBody body;
-    Floor *floor = nullptr;
-
 public:
-    Square(float x, float y, float w, float h, Floor *floor);
+    PhysicsBody body;
+    SquareType type = SquareType::UNKNOWN;
 
-    void update(float deltaTime) override;
+    Square(float x, float y, float w, float h);
+
+    void update(float deltaTime, const std::vector<GameObject *> &staticObjects) override;
 
     void render(SDL_Renderer *renderer) override;
 };

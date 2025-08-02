@@ -4,10 +4,8 @@
 
 #include "Square.h"
 
-#include "Floor.h"
 
-Square::Square(const float x, const float y, const float w, const float h, Floor *floor): GameObject(x, y, w, h),
-    floor(floor) {
+Square::Square(const float x, const float y, const float w, const float h): GameObject(x, y, w, h) {
     shape = ShapeType::RECTANGLE;
 }
 
@@ -22,7 +20,7 @@ void Square::render(SDL_Renderer *renderer) {
     SDL_RenderFillRect(renderer, &rect);
 }
 
-void Square::update(const float deltaTime) {
-    body.update(this, deltaTime, floor);
+void Square::update(const float deltaTime, const std::vector<GameObject *> &staticObjects) {
+    body.update(this, deltaTime, staticObjects);
 }
 

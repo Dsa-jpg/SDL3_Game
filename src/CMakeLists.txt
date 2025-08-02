@@ -7,8 +7,6 @@ add_executable(${PROJECT_NAME}
         core/Collision.h
         gameobjects/Square.cpp
         gameobjects/Square.h
-        gameobjects/Floor.cpp
-        gameobjects/Floor.h
         core/Vec2.h
         core/Transform.h
         gameobjects/Circle.cpp

@@ -12,4 +12,13 @@ enum class ShapeType {
     UNKNOWN
 };
 
+enum class SquareType {
+    FLOOR,
+    LEFTWALL,
+    RIGHTWALL,
+    PLATFORM,
+    OBJECT,
+    UNKNOWN
+};
+
 #endif //COMMON_H

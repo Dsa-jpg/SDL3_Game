@@ -5,7 +5,6 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 #pragma once
-#include "Floor.h"
 #include "../core/GameObject.h"
 #include "../core/PhysicsBody.h"
 
@@ -15,11 +14,11 @@ public:
     float radius;
     int numSegments;
     PhysicsBody body;
-    Floor *floor = nullptr;
 
-    Circle(float x, float y, float radius, int numSegments, Floor *floor);
 
-    void update(float deltaTime) override;
+    Circle(float x, float y, float radius, int numSegments);
+
+    void update(float deltaTime, const std::vector<GameObject *> &staticObjects) override;
 
     void render(SDL_Renderer *renderer) override;
 };

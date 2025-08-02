@@ -4,7 +4,7 @@
 #include "core/GameObject.h"
 #include "gameobjects/Circle.h"
 #include "gameobjects/Square.h"
-#include "gameobjects/Floor.h"
+
 
 #include "SDL3/SDL.h"
 
@@ -24,11 +24,22 @@ int main(int argc, char *argv[]) {
     SDL_Window *window = SDL_CreateWindow("Game Engine", SCREEN_WIDTH, SCREEN_HEIGHT,SDL_WINDOW_RESIZABLE);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, nullptr);
 
-    auto *floor = new Floor(0, 550, 800, 50);
+    auto *floor = new Square(20, 550, 800, 50);
+    floor->body.isStatic = true;
+    floor->type = SquareType::PLATFORM;
+    auto *leftWall = new Square(0, 0, 20, 600);
+    leftWall->body.isStatic = true;
+    leftWall->type = SquareType::LEFTWALL;
+    auto *rightWall = new Square(780, 0, 20, 600);
+    rightWall->body.isStatic = true;
+    rightWall->type = SquareType::RIGHTWALL;
 
-    std::vector<GameObject *> game_objects = {floor};
-    game_objects.push_back(new Square(100, 100, 50, 50, floor));
-    game_objects.push_back(new Circle(200, 100, 25, 256, floor));
+
+    const std::vector<GameObject *> staticObjects = {floor, leftWall, rightWall};
+
+    std::vector<GameObject *> dynamicObjects = {};
+    dynamicObjects.push_back(new Circle(200, 100, 25, 256));
+    dynamicObjects.push_back(new Square(100, 100, 50, 50));
 
 
     SDL_Event event;
@@ -41,22 +52,27 @@ int main(int argc, char *argv[]) {
         }
 
 
-        for (auto *obj: game_objects) {
-            obj->update(DELTA_TIME);
+        for (auto *obj: dynamicObjects) {
+            obj->update(DELTA_TIME, staticObjects);
         }
 
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
 
-        for (auto *obj: game_objects) {
+        for (auto *obj: staticObjects) {
             obj->render(renderer);
         }
+
+        for (auto *obj: dynamicObjects) {
+            obj->render(renderer);
+        }
+
 
         SDL_RenderPresent(renderer); // Refresh window with updated objects
 
         SDL_Delay(16); //
     }
-    for (const auto *obj: game_objects) {
+    for (const auto *obj: dynamicObjects) {
         delete obj;
     }
 

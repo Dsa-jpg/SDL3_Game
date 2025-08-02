@@ -4,6 +4,8 @@
 
 #ifndef PHYSICSBODY_H
 #define PHYSICSBODY_H
+#include <vector>
+
 #include "Common.h"
 #include "GameObject.h"
 #include "SDL3/SDL.h"
@@ -25,8 +27,9 @@ public:
     float mass = 1.0f;
 
     bool affectedByGravity = true;
+    bool isStatic = false;
 
-    void update(GameObject *obj, float deltaTime, const GameObject *floor);
+    void update(GameObject *obj, float deltaTime, const std::vector<GameObject *> &staticObjects);
 
 private:
     static SDL_FRect getBoundingBox(const GameObject *obj);

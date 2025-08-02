@@ -6,6 +6,8 @@
 #define GAMEOBJECT_H
 
 #pragma once
+#include <vector>
+
 #include "Common.h"
 #include "Transform.h"
 #include "SDL3/SDL.h"
@@ -19,7 +21,7 @@ public:
 
     GameObject(float x, float y, float w, float h);
 
-    virtual void update(float deltaTime) = 0;
+    virtual void update(float deltaTime, const std::vector<GameObject *> &staticObjects) = 0;
 
     virtual void render(SDL_Renderer *renderer) = 0;
 

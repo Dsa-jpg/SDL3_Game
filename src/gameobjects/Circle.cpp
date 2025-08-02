@@ -5,15 +5,15 @@
 #include "Circle.h"
 #include <cmath>
 
-Circle::Circle(float x, float y, float radius, int segments, Floor *floor) : GameObject(x, y, radius * 2, radius * 2),
-                                                                             radius(radius),
-                                                                             numSegments(segments), floor(floor) {
+Circle::Circle(float x, float y, float radius, int segments) : GameObject(x, y, radius * 2, radius * 2),
+                                                               radius(radius),
+                                                               numSegments(segments) {
     shape = ShapeType::CIRCLE;
 }
 
 
-void Circle::update(const float deltaTime) {
-    body.update(this, deltaTime, floor);
+void Circle::update(const float deltaTime, const std::vector<GameObject *> &staticObjects) {
+    body.update(this, deltaTime, staticObjects);
 }
 
 void Circle::render(SDL_Renderer *renderer) {
